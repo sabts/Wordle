@@ -60,7 +60,15 @@ body{
     justify-content: center;
     align-items: center;
 }
-
+.tile-correct{
+    background-color: var(--color-correct);
+}
+.tile-present{
+    background-color: var(--color-present);
+}
+.tile-incorrect{
+    background-color: var(--color-incorrect);
+}
 .textInput{
     width: 600px;
     height: 3rem;

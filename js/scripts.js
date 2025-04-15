@@ -49,10 +49,9 @@ const createBoard = () => {
     gameBoardElement.append(rowElement);
   }
 };
-randomWordToGuess();
-createBoard();  
 
 //3.Recoger el valor del input
+//4. Pintar lo q habéis escrito en el tablero, cada letra en el cuadradito
 const InputTypedText = () => {
   event.preventDefault()
 
@@ -60,13 +59,38 @@ if(typeZoneElement.value.length !== randomWord.length){
   errorTextElement.classList.remove('hide')
   errorTextElement.textContent = `The word doesn't have ${randomWord.length} characters`
 } else {
-  errorTextElement.classList.add('hide')
-  gameBoardElement.textContent = typeZoneElement.value; 
+  errorTextElement.classList.add('hide');
+  const rows = document.querySelectorAll('.row')[actualRow]; // El padre. Me aseguro que comienza por la primera fila
+  const tiles = rows.querySelectorAll('.tile'); // selecciono los hijos que estan dentro del padre
+  for(let i=0; i < randomWord.length;i++){
+    tiles[i].textContent = typeZoneElement.value[i];
+  }
+  actualRow++
 }
 };
-
-//4. Pintar lo q habéis escrito en el tablero, cada letra en el cuadradito
 //5. Color de los cuadrados 
-//6. Ganar o perder
+//usar el root y las variables.
+//includes intentar crear un rootStyles de los colores y borrar lineas en el css
+const tilesChangeColor = () => {
+  const rows = document.querySelectorAll('.row')[actualRow]; //me coloca el color abajo
+  const tiles = rows.querySelectorAll('.tile');
+
+  for(let i=0; i < randomWord.length;i++){
+    if(typeZoneElement.value[i] === randomWord[i]){
+      tiles[i].classList.add('tile-correct');
+    } else if(randomWord.includes(typeZoneElement.value[i]) === randomWord[i]){
+      tiles[i].classList.add('tile-present'); //no me lee el amarillo
+    }else{
+      tiles[i].classList.add('tile-incorrect')
+    }
+  }
+}
+
+//6. Ganar o perder //replace errorTextElement con You WIN, You LOSE
+
+randomWordToGuess();
+createBoard();
+tilesChangeColor()  
 
 formElement.addEventListener('submit',InputTypedText)
+formElement.addEventListener('submit',tilesChangeColor)
