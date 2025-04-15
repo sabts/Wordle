@@ -1,3 +1,10 @@
+:root {
+    --color-incorrect: #757575;
+    --color-present: #e4a81d;
+    --color-correct: #43a047;
+    --color-error: #bb3429;
+}
+
 *{
     box-sizing: border-box;
 }
@@ -19,6 +26,53 @@ nav ul{
     margin-bottom: 0;
 }
 body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0;
+    padding: 5rem;
+    text-align: center;
     font-family: sans-serif;
+    background-color: #3a3a3c;
+    color: gainsboro;
+}
+.game-board{
+    display: grid;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+.row{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    width: 100%;
+}
+.tile {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border: 2px solid whitesmoke;
+    color: white;
+    font-size: 2rem;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+}
+
+.textInput{
+    width: 600px;
+    height: 3rem;
+    font-size: 2rem;
+    text-align: center;
+    background-color: transparent;
+    color: ghostwhite;
+}
+.error-text{
+    font-size: 1.7rem;
+    color: var(--color-error);
+}
+.hide{
+    display: none;
 }
