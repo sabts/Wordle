@@ -73,18 +73,17 @@ const InputTypedText = () => {
 };
 //5. Color de los cuadrados
 //El primer blucle revisa si esta correcto
-//segundo el amarillo(la letra esta pero en el lugar incorrecto)
-// No esta (gris)
+//segundo bucle para el amarillo(la letra esta pero en el lugar incorrecto)
+//el ultimo bulcle No esta (gris)
 const tilesChangeColor = () => {
   //const tiles = gameBoardElement.children[1].children[actualRow].children; // es un array, se tiene que crear un bucle del nieto (ultimo hijo)
 
   const lettersInBoard = randomWord;
   console.log("palabra del board: " + lettersInBoard);
 
-  for (let i = 0; i < randomWord; index++) {
-    const selectedWord =
-      gameBoardElement.children[1].children[actualRow].children;
-    console.log("esta es la palabra seleccionada: " + selectedWord);
+  for (const typeZoneElement of randomWord) {
+    
+  }
   }
 
   for (let j = 0; 0 < typeZoneElement.value; j++) {
