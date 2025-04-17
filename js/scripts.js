@@ -51,7 +51,6 @@ const createBoard = () => {
     gameBoardElement.append(rowElement);
   }
 
-  youWinOrLose()
 };
 
 const tilesChangeColor = () => {
@@ -78,7 +77,7 @@ const tilesChangeColor = () => {
     if (!tile.classList.contains("tile-correct")) {
       if (wordToCheck.includes(inputLetter)) {
         tile.classList.add("tile-present"); // Amarillo
-        wordToCheck = wordToCheck.replace(inputLetter, "🔪"); // Marca como usada
+        wordToCheck = wordToCheck.replace(inputLetter, "🔪");
        // console.log("wordToCheck con el reemplazo:", wordToCheck);
       } else {
         tile.classList.add("tile-incorrect"); // Gris
@@ -90,13 +89,18 @@ const tilesChangeColor = () => {
 
 //6. Ganar o perder //text content errorTextElement con You WIN, You LOSE
 const youWinOrLose = () => {
-  if(gameBoardElement.children[actualRow] > tries)
-  {
-    errorTextElement.textContent = "You Lose"
-  } 
-  else if(typeZoneElement.value === randomWord)
-  {
-     errorTextElement.textContent = "You Win"
+  if (typeZoneElement.value === randomWord) {
+    errorTextElement.classList.remove('hide');
+    errorTextElement.classList.remove('error-text');
+    typeZoneElement.classList.add("hide")
+    errorTextElement.classList.add('win');
+
+    errorTextElement.textContent = "You Win!";
+  } else if (actualRow === tries -1) {
+    errorTextElement.classList.remove('hide');
+    errorTextElement.classList.remove('win');
+    typeZoneElement.classList.add("hide")
+    errorTextElement.textContent = "You Lose, the word was " + randomWord;
   }
 }
 
@@ -107,6 +111,7 @@ const inputTypedText = () => {
 
   if (typeZoneElement.value.length !== randomWord.length) {
     errorTextElement.classList.remove("hide");
+    errorTextElement.classList.remove("win");
     errorTextElement.textContent = `The word doesn't have ${randomWord.length} characters`;
   } else {
     errorTextElement.classList.add("hide");
@@ -115,14 +120,13 @@ const inputTypedText = () => {
     for (let i = 0; i < randomWord.length; i++) {
       tiles[i].textContent = typeZoneElement.value[i];
     }
-    tilesChangeColor();
-    actualRow++;
-    youWinOrLose()
   }
+  tilesChangeColor();
+  youWinOrLose()
+  actualRow++;
+
   event.target.reset();
 };
-
-
 
 randomWordToGuess();
 createBoard();

@@ -84,3 +84,7 @@ body{
 .hide{
     display: none;
 }
+.win{
+    color: var(--color-correct);
+    font-size: 2rem;
+}
